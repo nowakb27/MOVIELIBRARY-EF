@@ -1,16 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
-namespace EFTutorial.Models
+namespace EFTutorial
 {
-    public class BlogContext : DbContext
+    class BlogContext : DbContext
     {
-        public DbSet<Blog> Blogs {get;set;}
-        public DbSet<Post> Posts {get;set;}
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,8 +21,8 @@ namespace EFTutorial.Models
                 .Build();
 
             optionsBuilder
-            .UseLazyLoadingProxies()
-            .UseSqlServer(configuration.GetConnectionString("BloggingContext"));
+                //.UseLazyLoadingProxies()
+                .UseSqlServer(configuration.GetConnectionString("BloggingContext"));
         }
     }
 }
